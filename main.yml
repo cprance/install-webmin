@@ -1,0 +1,15 @@
+---
+- hosts: all
+  become: true
+  tasks:
+  - name: Install Webmin on CentOS
+    yum:
+      name: webmin
+      state: latest
+      update_cache: yes
+    when: ansible_distribution == "CentOS"
+  - name: Install Webmin on Debian
+    apt:
+      name: snmpd
+      state: latest
+    when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
